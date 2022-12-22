@@ -91,6 +91,7 @@ if you made it to the end of the string and stack is empty, return true
 (define (paren-balanced-helper text stack)
     (cond
         [(and (equal? stack null) (equal? "" text)) #t]
+        [(and (not (equal? stack null)) (equal? "" text)) #f]
         [(is-opening-character (substring text 0 1))
             (paren-balanced-helper 
                 (substring text 1) 
@@ -138,3 +139,5 @@ Flip opening character to closing character
 (paren-balanced? "({[(Hello]")
 (display "(paren-balanced? \"Test )]}\") -> #f: ")
 (paren-balanced? "Test )]}")
+(display "(paren-balanced? \"({((Somethetning else....)\") -> #f: ")
+(paren-balanced? "({((Somethetning else....)")
