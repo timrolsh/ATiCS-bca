@@ -1,0 +1,45 @@
+{
+    "states": [
+        {
+            "state_name": "s0",
+            "transitions": [
+                {"read": "0", "write": "1", "direction_right": true, "next_state": "s1"},
+                {"read": "1", "write": "1", "direction_right": false, "next_state": "s2"}
+            ]
+        },
+        {
+            "state_name": "s1",
+            "transitions": [
+                {"read": "0", "write": "1", "direction_right": true, "next_state": "s2"},
+                {"read": "1", "write": "1", "direction_right": true, "next_state": "s1"}
+            ]
+        },
+        {
+            "state_name": "s2",
+            "transitions": [
+                {"read": "0", "write": "1", "direction_right": true, "next_state": "s3"},
+                {"read": "1", "write": "0", "direction_right": false, "next_state": "s4"}
+            ]
+        },
+        {
+            "state_name": "s3",
+            "transitions": [
+                {"read": "0", "write": "1", "direction_right": false, "next_state": "s0"},
+                {"read": "1", "write": "1", "direction_right": false, "next_state": "s3"}
+            ]
+        },
+        {
+            "state_name": "s4",
+            "transitions": [
+                {"read": "0", "write": "1", "direction_right": false, "next_state": "s5"},
+                {"read": "1", "write": "0", "direction_right": false, "next_state": "s0"}
+            ]
+        },
+        {"state_name": "s5", "transitions": [], "start_state": false, "haltState": true}
+    ],
+    "start_state": "s0",
+    "halt_states": ["s5"],
+    "alphabet": ["0", "1"],
+    "null_character": "0",
+    "initial_tape": ""
+}
