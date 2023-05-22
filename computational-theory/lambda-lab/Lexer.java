@@ -1,3 +1,9 @@
+/*
+Tim Rolshud, David Lee
+ATiCS Period 3
+June 5, 2023
+*/
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,8 +28,7 @@ public class Lexer {
             String current = input.substring(index, index + 1);
             if (current.equals(";")) {
                 break;
-            }
-            else if (current.equals(spaceString)) {
+            } else if (current.equals(spaceString)) {
                 ++index;
             } else if (characters.contains(current)) {
                 if (current.equals("λ")) {
