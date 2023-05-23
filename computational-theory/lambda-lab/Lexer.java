@@ -24,7 +24,7 @@ public class Lexer {
 
     public ArrayList<String> tokenize(String input) {
         ArrayList<String> tokens = new ArrayList<>();
-        for (int index = 0; index < input.length();) {
+        for (int index = 0; index < input.length() && input.charAt(index) != ';';) {
             String current = input.substring(index, index + 1);
             if (current.equals(";")) {
                 break;

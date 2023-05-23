@@ -25,7 +25,8 @@ public class Console {
 			
 			ArrayList<String> tokens = lexer.tokenize(input);
 
-			String output = "";
+
+            String output = "";
 			
 			try {
 				Expression exp = parser.parse(tokens);
