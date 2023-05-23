@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Lexer {
-    static final ArrayList<String> characters = new ArrayList<>(Arrays.asList("\\", ".", "(", ")", "λ"));
+    static final ArrayList<String> characters = new ArrayList<>(Arrays.asList("\\", ".", "(", ")", "λ", "="));
     static final String spaceString = " ";
 
     /*
@@ -21,10 +21,9 @@ public class Lexer {
      * [(, \, bat, ., bat, flies, ), cat, \, g, ., joy!, )]
      *
      */
-
     public ArrayList<String> tokenize(String input) {
         ArrayList<String> tokens = new ArrayList<>();
-        for (int index = 0; index < input.length();) {
+        for (int index = 0; index < input.length() && input.charAt(index) != ';';) {
             String current = input.substring(index, index + 1);
             if (current.equals(";")) {
                 break;
@@ -33,9 +32,7 @@ public class Lexer {
             } else if (characters.contains(current)) {
                 if (current.equals("λ")) {
                     tokens.add("\\");
-
                 } else {
-
                     tokens.add(current);
                 }
                 ++index;
