@@ -40,7 +40,6 @@ public class Parser {
                     // increment index by 1 because opening paren was added
                     tokens.add(++index, ")");
                     return;
-
                 }
             }
             ++index;
@@ -56,7 +55,6 @@ public class Parser {
             tokens.add(start, "(");
             tokens.add(++index, ")");
         }
-
     }
 
     /*
@@ -64,20 +62,72 @@ public class Parser {
      * parentheses around them. Easier for the parser to then process tokens.
      */
     private void preParse() throws ParseException {
-        for (int index = 0; index < tokens.size();) {
+        for (int index = 0; index < tokens.size(); ++index) {
             // scan lambda if it does not have a left paren to the left of it
             if (tokens.get(index).equals("\\") && (index == 0 || !tokens.get(index - 1).equals("("))) {
                 lambdaScanner(index);
             }
-            ++index;
         }
-
     }
 
+    // todo add method description
+    private Expression parseHelper(int start, int end) {
+        // if it is a lambda
+        if (tokens.get(start).equals("\\")) {
+            return new Function(new Variable(tokens.get(start + 1)), parseHelper(start + 3, end));
+        }
+        // its just a variable and nothing else
+        else if (start == end) {
+            return new Variable(tokens.get(start));
+        }
+        // all other kinds of expressions
+        else {
+            int oldEnd = end;
+            // look right to left and find one "thing" on the right, then recurse with a new
+            // application with the range on the left and the one thing on rhe right
+            int parenCounter = 0;
+            int rightPartStart = end;
+            for (int index = end; index >= start; --index) {
+                String currentToken = tokens.get(index);
+                if (currentToken.equals(")")) {
+                    if (parenCounter == 0) {
+                        end = index;
+                    }
+                    ++parenCounter;
+                } else if (currentToken.equals("(")) {
+                    --parenCounter;
+                    if (parenCounter == 0) {
+                        rightPartStart = index;
+                        break;
+                    }
+                } else if (parenCounter == 0) {
+                    rightPartStart = index;
+                    break;
+                }
+            }
+            // one variable is the thing on the right
+            if (rightPartStart == end) {
+                return new Application(parseHelper(start, rightPartStart - 1), new Variable(tokens.get(end)));
+            }
+            // the entire thing was one expression
+            else if (rightPartStart == start && end == oldEnd) {
+                return parseHelper(start + 1, end - 1);
+            } else {
+                return new Application(parseHelper(start, rightPartStart - 1),
+                        parseHelper(rightPartStart + 1, end - 1));
+            }
+        }
+    }
+
+    /*
+     * Main parser method
+     */
     public Expression parse(ArrayList<String> tokens) throws ParseException {
         this.tokens = tokens;
         preParse();
-        return null;
+
+        Expression answer = parseHelper(0, tokens.size() - 1);
+        return answer;
 
     }
 }
