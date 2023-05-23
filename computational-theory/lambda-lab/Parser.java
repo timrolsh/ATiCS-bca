@@ -6,9 +6,11 @@ June 5, 2023
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Parser {
     private ArrayList<String> tokens;
+    public HashMap<String, Expression> storedVariables = new HashMap<>();
 
     /*
      * Given an index where a lambda starts, find where the context of the lambda
@@ -70,15 +72,31 @@ public class Parser {
         }
     }
 
-    // todo add method description
+    /*
+     * Given a string, if this string corresponds to an already declared variable,
+     * substitute that variable for this string. Otherwise, create a new variable
+     * that represents this string.
+     */
+    private Expression variableScanner(String s) {
+        // this isn't just a variable, this is a stored variable
+        if (storedVariables.containsKey(s)) {
+            return storedVariables.get(s);
+        }
+        return new Variable(s);
+    }
+
+    /*
+     * Main helper method for parse. Executes after the preparser has been called.
+     */
     private Expression parseHelper(int start, int end) {
         // if it is a lambda
         if (tokens.get(start).equals("\\")) {
+            // most likely not be a case where variable here will point to something else
             return new Function(new Variable(tokens.get(start + 1)), parseHelper(start + 3, end));
         }
         // its just a variable and nothing else
         else if (start == end) {
-            return new Variable(tokens.get(start));
+            return variableScanner(tokens.get(start));
         }
         // all other kinds of expressions
         else {
@@ -107,7 +125,7 @@ public class Parser {
             }
             // one variable is the thing on the right
             if (rightPartStart == end) {
-                return new Application(parseHelper(start, rightPartStart - 1), new Variable(tokens.get(end)));
+                return new Application(parseHelper(start, rightPartStart - 1), variableScanner(tokens.get(end)));
             }
             // the entire thing was one expression
             else if (rightPartStart == start && end == oldEnd) {
@@ -124,10 +142,26 @@ public class Parser {
      */
     public Expression parse(ArrayList<String> tokens) throws ParseException {
         this.tokens = tokens;
+        // if the user attempts to assign this expression to a variable, then the
+        // variable name is gonna be at index 0 and the equal sign is gonna be at
+        // variable 1
+        if (tokens.size() >= 3 && tokens.get(1).equals("=")) {
+            String key = tokens.get(0);
+            // if the value is already stored in the map, exit without parsing
+            if (storedVariables.containsKey(key)) {
+                return null;
+            }
+            // otherwise, parse, store parsed expression in map, return parsed expression
+            else {
+                tokens.remove(0);
+                tokens.remove(0);
+                preParse();
+                Expression value = parseHelper(0, tokens.size() - 1);
+                storedVariables.put(key, value);
+                return value;
+            }
+        }
         preParse();
-
-        Expression answer = parseHelper(0, tokens.size() - 1);
-        return answer;
-
+        return parseHelper(0, tokens.size() - 1);
     }
 }

@@ -23,12 +23,27 @@ public class Console {
         while (!input.equalsIgnoreCase("exit")) {
 
             ArrayList<String> tokens = lexer.tokenize(input);
+            boolean isVariableAssignment = tokens.size() >= 3 && tokens.get(1).equals("=");
+            String variableName = "";
+            if (isVariableAssignment) {
+                variableName = tokens.get(0);
+            }
 
             String output = "";
 
             try {
                 Expression exp = parser.parse(tokens);
-                output = exp.toString();
+                // user tries to re-assign variable (not allowed in lambda calculus)
+                if (isVariableAssignment && exp == null) {
+                    output = tokens.get(0) + " has already been defined.";
+                } 
+                // user assigns new variable
+                else if (isVariableAssignment) {
+                    output = "Added " + exp.toString() + " as " + variableName;
+                }
+                else {
+                    output = exp.toString();
+                }
             } catch (Exception e) {
                 System.out.println("Unparsable expression, input was: \"" + input + "\"");
                 input = cleanConsoleInput();
