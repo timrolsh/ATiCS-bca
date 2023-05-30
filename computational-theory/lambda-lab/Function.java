@@ -16,5 +16,9 @@ public class Function implements Expression {
     public String toString() {
         return "(λ" + variable + "." + expression.toString() + ")";
     }
+    
+    public Function copy() {
+        return new Function(variable.copy(), expression.copy());
+    }
 
 }

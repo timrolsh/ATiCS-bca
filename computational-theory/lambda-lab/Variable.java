@@ -5,7 +5,7 @@ June 5, 2023
 */
 
 public class Variable implements Expression {
-    private String name;
+    public final String name;
 
     public Variable(String name) {
         this.name = name;
@@ -15,4 +15,11 @@ public class Variable implements Expression {
         return name;
     }
 
+    public boolean equals(Variable other) {
+        return this.name.equals(other.name);
+    }
+
+    public Variable copy() {
+        return new Variable(name);
+    }
 }

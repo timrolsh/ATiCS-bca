@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Parser {
+    public static final HashMap<String, Expression> storedVariables = new HashMap<>();
     private ArrayList<String> tokens;
-    public HashMap<String, Expression> storedVariables = new HashMap<>();
 
     /*
      * Given an index where a lambda starts, find where the context of the lambda
@@ -86,7 +86,7 @@ public class Parser {
     }
 
     /*
-     * Main helper method for parse. Executes after the preparser has been called.
+     * Main helper method for parse. Executes after the pre-parser has been called.
      */
     private Expression parseHelper(int start, int end) {
         // if it is a lambda
@@ -94,7 +94,7 @@ public class Parser {
             // most likely not be a case where variable here will point to something else
             return new Function(new Variable(tokens.get(start + 1)), parseHelper(start + 3, end));
         }
-        // its just a variable and nothing else
+        // not a range to look at, just one index --> it is a variable
         else if (start == end) {
             return variableScanner(tokens.get(start));
         }
@@ -143,8 +143,9 @@ public class Parser {
     public Expression parse(ArrayList<String> tokens) throws ParseException {
         this.tokens = tokens;
         // if the user attempts to assign this expression to a variable, then the
-        // variable name is gonna be at index 0 and the equal sign is gonna be at
-        // variable 1
+        // variable
+        // name is going to be at index 0 and the equal sign is going to be at variable
+        // 1
         if (tokens.size() >= 3 && tokens.get(1).equals("=")) {
             String key = tokens.get(0);
             // if the value is already stored in the map, exit without parsing
@@ -155,13 +156,30 @@ public class Parser {
             else {
                 tokens.remove(0);
                 tokens.remove(0);
+                // if user is asking to run this function
+                boolean isRunning = tokens.get(0).equals("run");
+                if (isRunning) {
+                    tokens.remove(0);
+                }
                 preParse();
                 Expression value = parseHelper(0, tokens.size() - 1);
+                if (isRunning) {
+                    value = Runner.run(value);
+                }
                 storedVariables.put(key, value);
                 return value;
             }
         }
+        // if user is asking to run this function
+        boolean isRunning = tokens.get(0).equals("run");
+        if (isRunning) {
+            tokens.remove(0);
+        }
         preParse();
-        return parseHelper(0, tokens.size() - 1);
+        Expression value = parseHelper(0, tokens.size() - 1);
+        if (isRunning) {
+            value = Runner.run(value);
+        }
+        return value;
     }
 }
