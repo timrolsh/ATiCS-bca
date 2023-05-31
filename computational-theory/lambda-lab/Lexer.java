@@ -38,7 +38,7 @@ public class Lexer {
                 ++index;
             } else {
                 int start = index;
-                while (!(index == input.length() || input.charAt(index) == ' ' || characters.contains(input.substring(index, index + 1)))) {
+                while (!(index == input.length() || input.charAt(index) == ';' || input.charAt(index) == ' ' || characters.contains(input.substring(index, index + 1)))) {
                     ++index;
                 }
                 tokens.add(input.substring(start, index));
