@@ -14,7 +14,7 @@ public class Lexer {
     /*
      * A lexer (or "tokenizer") converts an input into tokens that
      * eventually need to be interpreted.
-     * 
+     *
      * Given the input
      * (\bat .bat flies)cat λg.joy! )
      * you should output the ArrayList of strings
@@ -23,7 +23,7 @@ public class Lexer {
      */
     public ArrayList<String> tokenize(String input) {
         ArrayList<String> tokens = new ArrayList<>();
-        for (int index = 0; index < input.length() && input.charAt(index) != ';';) {
+        for (int index = 0; index < input.length() && input.charAt(index) != ';'; ) {
             String current = input.substring(index, index + 1);
             if (current.equals(";")) {
                 break;
@@ -38,8 +38,7 @@ public class Lexer {
                 ++index;
             } else {
                 int start = index;
-                while (!(index == input.length() || input.charAt(index) == ' '
-                        || characters.contains(input.substring(index, index + 1)))) {
+                while (!(index == input.length() || input.charAt(index) == ';' || input.charAt(index) == ' ' || characters.contains(input.substring(index, index + 1)))) {
                     ++index;
                 }
                 tokens.add(input.substring(start, index));

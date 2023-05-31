@@ -32,16 +32,19 @@ public class Console {
             String output = "";
 
             try {
+                if (tokens.size() == 0) {
+                    input = cleanConsoleInput();
+                    continue;
+                }
                 Expression exp = parser.parse(tokens);
                 // user tries to re-assign variable (not allowed in lambda calculus)
                 if (isVariableAssignment && exp == null) {
                     output = tokens.get(0) + " has already been defined.";
-                } 
+                }
                 // user assigns new variable
                 else if (isVariableAssignment) {
                     output = "Added " + exp.toString() + " as " + variableName;
-                }
-                else {
+                } else {
                     output = exp.toString();
                 }
             } catch (Exception e) {

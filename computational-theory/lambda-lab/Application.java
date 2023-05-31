@@ -17,4 +17,8 @@ public class Application implements Expression {
         return "(" + this.left + " " + this.right + ")";
     }
 
+    public Application copy() {
+        return new Application(left.copy(), right.copy());
+    }
+
 }
