@@ -1,0 +1,26 @@
+> Added (λf.(λx.x)) as 0
+> Added (λn.(λf.(λx.(f ((n f) x))))) as succ
+> Added (λf.(λx.(f x))) as 1
+> Added (λm.(λn.(λf.(λx.((m f) ((n f) x)))))) as +
+> Added (λn.(λm.(λf.(λx.((n (m f)) x))))) as *
+> Added (λf.(λx.(f (f x)))) as 2
+> Added (λf.(λx.(f (f (f x))))) as 3
+> Added (λf.(λx.(f (f (f (f x)))))) as 4
+> Added (λf.(λx.(f (f (f (f (f x))))))) as 5
+> Added (λf.(λx.(f (f (f (f (f (f (f x))))))))) as 7
+> Added (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u))))) as pred
+> Added (λf.(λx.(f (f (f (f (f (f x)))))))) as 6
+> Added (λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) as -
+> Added (λf.(λx.(f (f (f (f (f (f (f (f (f (f x)))))))))))) as 10
+> Added (λf.(λx.(f (f (f (f (f (f (f (f (f x))))))))))) as 9
+> Added (λf.(λx.(f (f (f (f (f (f (f (f x)))))))))) as 8
+> Added (λx.(λy.x)) as true
+> Added (λf.(λx.x)) as false
+> Added (λp.((p (λf.(λx.x))) (λx.(λy.x)))) as not
+> Added (λn.((n (λp.((p (λf.(λx.x))) (λx.(λy.x))))) (λx.(λy.x)))) as even?
+> Added (λx.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) ((λn.((n (λp.((p (λf.(λx.x))) (λx.(λy.x))))) (λx.(λy.x)))) x))) as odd?
+> true
+> false
+> (λx.(x (x x)))
+> z
+> 

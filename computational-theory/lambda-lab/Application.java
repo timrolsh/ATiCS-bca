@@ -1,7 +1,8 @@
+
 /*
 Tim Rolshud, David Lee
 ATiCS Period 3
-June 5, 2023
+June 6, 2023
 */
 
 public class Application implements Expression {
@@ -13,12 +14,22 @@ public class Application implements Expression {
         this.right = right;
     }
 
-    public String toString() {
-        return "(" + this.left + " " + this.right + ")";
-    }
-
     public Application copy() {
         return new Application(left.copy(), right.copy());
     }
 
+    public Expression sub(Variable v, Expression e) {
+        return new Application(this.left.sub(v, e), this.right.sub(v, e));
+    }
+
+    public String toString() {
+        return "(" + left + " " + right + ")";
+    }
+
+    public boolean equals(Expression other) {
+        if (other instanceof Application app) {
+            return this.left.equals(app.left) && this.right.equals(app.right);
+        }
+        return false;
+    }
 }
