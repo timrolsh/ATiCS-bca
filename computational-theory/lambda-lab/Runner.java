@@ -52,7 +52,7 @@ public class Runner {
         // evaluates to an expression that is identical to a stored variable, just
         // return that variable
         for (String key : Parser.storedVars.keySet()) {
-            
+
             if (exp.equals(Parser.storedVars.get(key))) {
                 return new Variable(key);
             }

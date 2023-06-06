@@ -4,8 +4,6 @@ ATiCS Period 3
 June 6, 2023
 */
 
-// TODO add comments
-
 public class Variable implements Expression {
     public String name;
 
