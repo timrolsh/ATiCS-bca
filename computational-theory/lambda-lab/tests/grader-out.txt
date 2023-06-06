@@ -1,0 +1,98 @@
+> 
+> Correct-Answer!
+> No-Spaces?-Correct-Answer!
+> Added (λf.(λx.x)) as false
+> Added (λx.(λy.x)) as true
+> Added (λp.(λq.((p q) p))) as and
+> false
+> false
+> false
+> true
+> Added (λp.(λq.((p p) q))) as or
+> false
+> true
+> true
+> true
+> Added (λp.((p (λf.(λx.x))) (λx.(λy.x)))) as not
+> true
+> false
+> Added (λp.(λq.((p ((λp.((p (λf.(λx.x))) (λx.(λy.x)))) q)) q))) as xor
+> false
+> true
+> true
+> false
+> Added (λb.(λT.(λF.((b T) F)))) as if
+> Correct-Answer!
+> NUMBER-OPERATIONS
+> Added (λn.(λf.(λx.(f ((n f) x))))) as succ
+> Added (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u))))) as pred
+> Added (λm.(λn.(λf.(λx.((m f) ((n f) x)))))) as +
+> Added (λn.(λm.(λf.(λx.((n (m f)) x))))) as *
+> Added (λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) as -
+> Added (λf.(λx.x)) as 0
+> Added (λf.(λx.(f x))) as 1
+> Added (λf.(λx.(f (f x)))) as 2
+> Added (λf.(λx.(f (f (f x))))) as 3
+> Added (λf.(λx.(f (f (f (f x)))))) as 4
+> Added (λf.(λx.(f (f (f (f (f x))))))) as 5
+> Added (λf.(λx.(f (f (f (f (f (f x)))))))) as 6
+> Added (λf.(λx.(f (f (f (f (f (f (f x))))))))) as 7
+> Added (λf.(λx.(f (f (f (f (f (f (f (f x)))))))))) as 8
+> Added (λf.(λx.(f (f (f (f (f (f (f (f (f x))))))))))) as 9
+> Added (λf.(λx.(f (f (f (f (f (f (f (f (f (f x)))))))))))) as 10
+> Added (λn.((n (λp.((p (λf.(λx.x))) (λx.(λy.x))))) (λx.(λy.x)))) as even?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λx.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) ((λn.((n (λp.((p (λf.(λx.x))) (λx.(λy.x))))) (λx.(λy.x)))) x))) as odd?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) as zero?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) as leq?
+> Correct-Answer!
+> Correct-Answer!
+> Correct-Answer!
+> Added (λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) b) a)))) as lt?
+> Correct-Answer!
+> Correct-Answer!
+> Correct-Answer!
+> Added (λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) a) b)))) as gt?
+> Correct-Answer!
+> Correct-Answer!
+> Correct-Answer!
+> Added (λm.(λn.(((λp.(λq.((p q) p))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) m) n)) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) n) m)))) as eq?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.(((λp.(λq.((p q) p))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) m) n)) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) n) m)))) a) b)))) as neq?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λa.(λb.(((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) b) a))) as geq?
+> Correct-Answer!
+> Correct-Answer!
+> Correct-Answer!
+> Added (λx.(λy.(λf.((f x) y)))) as cons
+> (λf.((f A) B))
+> Added (λp.(p (λx.(λy.x)))) as car
+> Correct-Answer!
+> Added (λp.(p (λf.(λx.x)))) as cdr
+> Correct-Answer!
+> Added (λx.(λx.(λy.x))) as null
+> Added (((λx.(λy.(λf.((f x) y)))) C) (((λx.(λy.(λf.((f x) y)))) A) (((λx.(λy.(λf.((f x) y)))) T) (((λx.(λy.(λf.((f x) y)))) S) (λx.(λx.(λy.x))))))) as cats
+> C
+> A
+> T
+> S
+> Added (λp.(p (λx.(λy.(λf.(λx.x)))))) as null?
+> Correct-Answer!
+> Correct-Answer!
+> Added (λf.((λx.(f (x x))) (λx.(f (x x))))) as Y
+> Added ((λf.((λx.(f (x x))) (λx.(f (x x))))) (λf.(λn.((((λb.(λT.(λF.((b T) F)))) ((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) n)) (λf.(λx.(f x)))) (((λn.(λm.(λf.(λx.((n (m f)) x))))) n) (f (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) n) (λf.(λx.(f x)))))))))) as factorial
+> Correct-Answer!
+> Added (((λf.((λx.(f (x x))) (λx.(f (x x))))) (λg.(λq.(λa.(λb.(((((λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) b) a)))) a) b) (((λx.(λy.(λf.((f x) y)))) q) a)) (((g ((λn.(λf.(λx.(f ((n f) x))))) q)) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) a) b)) b))))))) (λf.(λx.x))) as divpair
+> Correct-Answer!
+> Correct-Answer!
+> Added (λa.(λb.((λp.(p (λx.(λy.x)))) (((((λf.((λx.(f (x x))) (λx.(f (x x))))) (λg.(λq.(λa.(λb.(((((λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) b) a)))) a) b) (((λx.(λy.(λf.((f x) y)))) q) a)) (((g ((λn.(λf.(λx.(f ((n f) x))))) q)) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) a) b)) b))))))) (λf.(λx.x))) a) b)))) as /
+> Correct-Answer!
+> Added (λa.(λb.((λp.(p (λf.(λx.x)))) (((((λf.((λx.(f (x x))) (λx.(f (x x))))) (λg.(λq.(λa.(λb.(((((λa.(λb.((λp.((p (λf.(λx.x))) (λx.(λy.x)))) (((λm.(λn.((λn.((n (λx.(λf.(λx.x)))) (λx.(λy.x)))) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) m) n)))) b) a)))) a) b) (((λx.(λy.(λf.((f x) y)))) q) a)) (((g ((λn.(λf.(λx.(f ((n f) x))))) q)) (((λm.(λn.((n (λn.(λf.(λx.(((n (λg.(λh.(h (g f))))) (λu.x)) (λu.u)))))) m))) a) b)) b))))))) (λf.(λx.x))) a) b)))) as mod
+> Correct-Answer!

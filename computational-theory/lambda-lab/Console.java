@@ -1,7 +1,7 @@
 /*
 Tim Rolshud, David Lee
 ATiCS Period 3
-June 5, 2023
+June 6, 2023
 */
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class Console {
                 }
                 // user assigns new variable
                 else if (isVariableAssignment) {
-                    output = "Added " + exp.toString() + " as " + variableName;
+                    output = "Added " + exp + " as " + variableName;
                 } else {
                     output = exp.toString();
                 }
@@ -79,8 +79,8 @@ public class Console {
     }
 
     public static String removeWeirdWhitespace(String input) {
-        String whitespace_chars = "" // dummy empty string for homogeneity
-                + "\\u0009" // CHARACTER TABULATION
+        // dummy empty string for homogeneity
+        String whitespace_chars = "\\u0009" // CHARACTER TABULATION
                 + "\\u000A" // LINE FEED (LF)
                 + "\\u000B" // LINE TABULATION
                 + "\\u000C" // FORM FEED (FF)

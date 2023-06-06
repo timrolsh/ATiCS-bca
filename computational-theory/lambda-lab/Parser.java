@@ -1,7 +1,7 @@
 /*
 Tim Rolshud, David Lee
 ATiCS Period 3
-June 5, 2023
+June 6, 2023
 */
 
 import java.text.ParseException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Parser {
-    public static final HashMap<String, Expression> storedVariables = new HashMap<>();
+    public static final HashMap<String, Expression> storedVars = new HashMap<>();
     private ArrayList<String> tokens;
 
     /*
@@ -79,8 +79,8 @@ public class Parser {
      */
     private Expression variableScanner(String s) {
         // this isn't just a variable, this is a stored variable
-        if (storedVariables.containsKey(s)) {
-            return storedVariables.get(s);
+        if (storedVars.containsKey(s)) {
+            return storedVars.get(s);
         }
         return new Variable(s);
     }
@@ -149,7 +149,7 @@ public class Parser {
         if (tokens.size() >= 3 && tokens.get(1).equals("=")) {
             String key = tokens.get(0);
             // if the value is already stored in the map, exit without parsing
-            if (storedVariables.containsKey(key)) {
+            if (storedVars.containsKey(key)) {
                 return null;
             }
             // otherwise, parse, store parsed expression in map, return parsed expression
@@ -166,7 +166,7 @@ public class Parser {
                 if (isRunning) {
                     value = Runner.run(value);
                 }
-                storedVariables.put(key, value);
+                storedVars.put(key, value);
                 return value;
             }
         }
